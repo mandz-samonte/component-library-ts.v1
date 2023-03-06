@@ -1,9 +1,9 @@
 import classNames from "classnames";
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode, RefAttributes, RefObject } from "react";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   children: ReactNode;
   size: "small" | "regular" | "large";
   href?: string;
@@ -13,6 +13,7 @@ export interface Props {
   loading: boolean;
   iconPosition: "left" | "right";
   disabled: boolean;
+  ref?: RefObject<unknown>;
 }
 
 const defaultProps = {
@@ -47,6 +48,7 @@ const Button = ({
   iconPosition,
   disabled,
   href,
+  ref,
   ...props
 }: Props & typeof defaultProps) => {
   const rootClass = classNames(
@@ -61,7 +63,7 @@ const Button = ({
 
   if (href) {
     return (
-      <a href={href} className={rootClass} {...props}>
+      <a href={href} ref={ref as RefObject<HTMLAnchorElement>} className={rootClass} {...props}>
         {iconPosition === "left" && icon}
         {children}
         {iconPosition === "right" && icon}
@@ -71,7 +73,7 @@ const Button = ({
 
   if (to) {
     return (
-      <Link to={to} className={rootClass} {...props}>
+      <Link to={to} ref={ref as RefObject<HTMLAnchorElement>} className={rootClass} {...props}>
         {iconPosition === "left" && icon}
         {children}
         {iconPosition === "right" && icon}
@@ -80,7 +82,7 @@ const Button = ({
   }
 
   return (
-    <button className={rootClass} {...props}>
+    <button className={rootClass} ref={ref as RefObject<HTMLButtonElement>} {...props}>
       {iconPosition === "left" && icon}
       {children}
       {iconPosition === "right" && icon}
