@@ -4,9 +4,11 @@ import React from "react";
 
 export const Tooltip = () => {
     return (
-        <TooltipWrapper text="Sample Tooltip">
-            <AiOutlineQuestionCircle />
-        </TooltipWrapper>
+        <div className="flex items-start">
+            <TooltipWrapper text="Sample Tooltip">
+                <AiOutlineQuestionCircle />
+            </TooltipWrapper>
+        </div>
     );
 };
 

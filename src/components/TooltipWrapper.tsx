@@ -65,7 +65,7 @@ function Tooltip({ children, anchor, preferredOrigin = "bottom-right", visible }
     return ReactDOM.createPortal(
         <div
             className={classNames(
-                "bg-white px-3 py-2 text-sm rounded-lg shadow-lg border border-zinc-200 w-full max-w-xs",
+                "bg-white px-3 py-2 text-sm rounded-lg shadow-lg border border-zinc-200 w-full max-w-max",
                 {
                     "origin-top-left": renderOrigin === ORIGIN_TOP_LEFT,
                     "origin-top-right": renderOrigin === ORIGIN_TOP_RIGHT,
