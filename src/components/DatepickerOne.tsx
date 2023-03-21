@@ -38,6 +38,27 @@ interface DatepickerProps {
     type?: "default" | "multi" | "range";
 }
 
+interface DatepickerInputBoxProps {
+    selected: Array<Date>;
+    placeholder?: string;
+    type?: "default" | "multi" | "range";
+}
+
+function DatepickerInputBox({ selected = [], placeholder = "Select Date", type = "default" }) {
+    return (
+        <div className="px-5 py-3 rounded-lg border border-primary bg-white">
+            {selected?.length === 0 ? (
+                <span>Select Date</span>
+            ) : (
+                <span className="flex items-center gap-x-2">
+                    {selected[0] && format(selected[0], "dd-MM-yyyy")} <BsArrowRightShort className="text-primary" />{" "}
+                    {selected[selected.length - 1] && format(selected[selected.length - 1], "dd-MM-yyyy")}
+                </span>
+            )}
+        </div>
+    );
+}
+
 export default function DatepickerOne({ type = "default" }: DatepickerProps) {
     const [isVisible, setVisible] = useState(false);
     const {
